@@ -1,0 +1,446 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Light Mode - Transport & Logistics Theme (amélioré) */
+  --background: rgb(250, 243, 225);
+  --foreground: rgb(34, 34, 34);
+  --card: rgb(255, 250, 239);
+  --card-foreground: rgb(34, 34, 34);
+  --popover: rgb(245, 231, 198);
+  --popover-foreground: rgb(34, 34, 34);
+  --primary: rgb(94, 58, 25);
+  --primary-foreground: white;
+  --secondary: rgb(245, 231, 198);
+  --secondary-foreground: rgb(34, 34, 34);
+  --muted: rgb(245, 231, 198);
+  --muted-foreground: rgb(45, 45, 45);
+  --accent: rgb(94, 58, 25);
+  --accent-foreground: white;
+  --destructive: rgb(220, 38, 38);
+  --destructive-foreground: white;
+  --border: rgb(200, 180, 150);
+  --input: rgb(240, 220, 190);
+  --ring: rgb(94, 58, 25);
+  --radius: 0.625rem;
+  --sidebar: rgb(0, 0, 0);
+  --sidebar-foreground: white;
+  --sidebar-primary: rgb(94, 58, 25);
+  --sidebar-primary-foreground: rgb(0, 0, 0);
+  --sidebar-accent: rgb(94, 58, 25);
+  --sidebar-accent-foreground: white;
+  --sidebar-border: rgb(50, 50, 50);
+  --sidebar-ring: rgb(94, 58, 25);
+
+  /* Ombres plus marquées pour le mode clair */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  /* Dark Mode - Modern & Clean */
+  --background: rgb(10, 10, 15);
+  --foreground: rgb(245, 245, 250);
+  --card: rgb(20, 20, 28);
+  --card-foreground: rgb(245, 245, 250);
+  --popover: rgb(20, 20, 28);
+  --popover-foreground: rgb(245, 245, 250);
+  --primary: rgb(250, 129, 18);
+  --primary-foreground: white;
+  --secondary: rgb(30, 30, 40);
+  --secondary-foreground: rgb(200, 200, 220);
+  --muted: rgb(30, 30, 40);
+  --muted-foreground: rgb(130, 130, 160);
+  --accent: rgb(250, 129, 18);
+  --accent-foreground: white;
+  --destructive: rgb(239, 68, 68);
+  --destructive-foreground: white;
+  --border: rgb(40, 40, 55);
+  --input: rgb(30, 30, 40);
+  --ring: rgb(250, 129, 18);
+  --radius: 0.625rem;
+  --sidebar: rgb(15, 15, 25);
+  --sidebar-foreground: rgb(245, 245, 250);
+  --sidebar-primary: rgb(250, 129, 18);
+  --sidebar-primary-foreground: white;
+  --sidebar-accent: rgb(250, 129, 18);
+  --sidebar-accent-foreground: white;
+  --sidebar-border: rgb(40, 40, 55);
+  --sidebar-ring: rgb(250, 129, 18);
+
+  /* Ombres plus discrètes mais visibles en mode sombre */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Intégration des ombres personnalisées dans Tailwind */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+  --shadow-inner: var(--shadow-inner);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply text-foreground;
+    background-image: url('/lightmodeBackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background-image 0.5s ease;
+  }
+
+  .dark body {
+    background-image: url('/DarkmodeBackground.png');
+  }
+}
+
+/* Bordures plus visibles */
+.table-border-light {
+  border-color: #e5e7eb;
+}
+
+.dark .table-border-light {
+  border-color: #374151;
+}
+
+.table-border-medium {
+  border-color: #d1d5db;
+}
+
+.dark .table-border-medium {
+  border-color: #4b5563;
+}
+
+/* Couleurs de survol plus visibles */
+.hover-bg-light {
+  background-color: #f9fafb;
+}
+
+.dark .hover-bg-light {
+  background-color: #1f2937;
+}
+
+.hover-bg-medium {
+  background-color: #f3f4f6;
+}
+
+.dark .hover-bg-medium {
+  background-color: #111827;
+}
+
+/* Bordures pour les cellules de tableau */
+.table-cell-border {
+  border-right: 1px solid #e5e7eb;
+}
+
+.dark .table-cell-border {
+  border-right: 1px solid #374151;
+}
+
+.table-cell-border:last-child {
+  border-right: none;
+}
+
+/* Diviseurs plus visibles */
+.divide-visible {
+  border-top-width: 1px;
+}
+
+.dark .divide-visible {
+  border-top-width: 1px;
+}
+
+/* Scrollbar personnalisée améliorée */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(94, 58, 25) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: #4b5563 transparent;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Effet de ligne alternée pour plus de lisibilité */
+tr:nth-child(even) {
+  background-color: rgb(249, 218, 152);
+}
+
+.dark tr:nth-child(even) {
+  background-color: rgba(31, 41, 55, 0.3);
+}
+
+tr:hover {
+  background-color: rgb(248, 225, 172) !important;
+}
+
+.dark tr:hover {
+  background-color: #1f2937 !important;
+}
+
+.sidebar-nav-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+.sidebar-nav-scroll::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+}
+
+.sidebar-nav-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.sidebar-nav-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  display: block;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Light Mode Button Hover Styling Overrides */
+html:not(.dark) button.bg-primary,
+html:not(.dark) button[class*="bg-primary"],
+html:not(.dark) a.bg-primary,
+html:not(.dark) a[class*="bg-primary"],
+html:not(.dark) [data-slot="button"].bg-primary,
+html:not(.dark) label.bg-primary,
+html:not(.dark) label[class*="bg-primary"],
+html:not(.dark) button.bg-secondary,
+html:not(.dark) button[class*="bg-secondary"],
+html:not(.dark) a.bg-secondary,
+html:not(.dark) a[class*="bg-secondary"],
+html:not(.dark) [data-slot="button"].bg-secondary {
+  transition: background-color 250ms ease-in-out, color 250ms ease-in-out, border-color 250ms ease-in-out, box-shadow 250ms ease-in-out !important;
+}
+
+html:not(.dark) button.bg-primary:hover,
+html:not(.dark) button[class*="bg-primary"]:hover,
+html:not(.dark) a.bg-primary:hover,
+html:not(.dark) a[class*="bg-primary"]:hover,
+html:not(.dark) [data-slot="button"].bg-primary:hover,
+html:not(.dark) label.bg-primary:hover,
+html:not(.dark) label[class*="bg-primary"]:hover {
+  background-color: rgb(120, 78, 38) !important;
+  color: var(--primary-foreground) !important;
+}
+
+html:not(.dark) button.bg-secondary:hover,
+html:not(.dark) button[class*="bg-secondary"]:hover,
+html:not(.dark) a.bg-secondary:hover,
+html:not(.dark) a[class*="bg-secondary"]:hover,
+html:not(.dark) [data-slot="button"].bg-secondary:hover {
+  background-color: rgb(120, 78, 38) !important;
+  color: var(--primary-foreground) !important;
+}
+
+/* ─── Désactiver le changement de couleur de l'autocomplétion du navigateur ─── */
+/* Pour Chrome, Safari et Edge */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--background) inset !important;
+  -webkit-text-fill-color: var(--foreground) !important;
+  box-shadow: 0 0 0 1000px var(--background) inset !important;
+  border-color: var(--border) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Pour les inputs avec background spécifique */
+input[class*="bg-background"]:-webkit-autofill,
+input[class*="bg-card"]:-webkit-autofill,
+textarea[class*="bg-background"]:-webkit-autofill,
+textarea[class*="bg-card"]:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--background) inset !important;
+  box-shadow: 0 0 0 1000px var(--background) inset !important;
+}
+
+/* Mode sombre */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active,
+.dark textarea:-webkit-autofill,
+.dark textarea:-webkit-autofill:hover,
+.dark textarea:-webkit-autofill:focus,
+.dark textarea:-webkit-autofill:active,
+.dark select:-webkit-autofill,
+.dark select:-webkit-autofill:hover,
+.dark select:-webkit-autofill:focus,
+.dark select:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--background) inset !important;
+  -webkit-text-fill-color: var(--foreground) !important;
+  box-shadow: 0 0 0 1000px var(--background) inset !important;
+  border-color: var(--border) !important;
+}
+
+/* Supprime les flèches spin de tous les inputs number */
+.no-spinner {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
+  /* Force le cache même en hover */
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Pour les navigateurs WebKit, on renforce encore */
+input[type="number"].no-spinner {
+  -webkit-appearance: none;
+}
+
+/* Pour désactiver le scroll sur la molette (sécurité) */
+input[type="number"].no-spinner {
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
