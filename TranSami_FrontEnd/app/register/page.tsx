@@ -84,7 +84,8 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8080/api/auth/register', {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://fleetvsionbackend-production.up.railway.app/api';
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
