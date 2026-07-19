@@ -117,8 +117,8 @@ export default function ResetPasswordPage() {
                 <Image
                   src={darkMode ? logo1_dark : logo1_light}
                   alt="FleetVision TUNISIE"
-                  fill
-                  sizes="208px"
+                  width={208}
+                  height={80}
                   className="object-contain"
                   priority
                 />
