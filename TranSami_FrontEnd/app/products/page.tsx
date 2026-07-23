@@ -30,6 +30,7 @@ export default function ProductsPage() {
   const [editingProduct, setEditingProduct] = useState<CodeProduitResponse | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteProductId, setDeleteProductId] = useState<number | null>(null);
+  const [showDeleteErrorModal, setShowDeleteErrorModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalError, setModalError] = useState<string | null>(null);
 
@@ -114,8 +115,9 @@ export default function ProductsPage() {
       await loadAllData();
       setShowDeleteModal(false);
       setDeleteProductId(null);
-    } catch {
-      // silencieux
+    } catch (err: any) {
+      setShowDeleteModal(false);
+      setShowDeleteErrorModal(true);
     }
   };
 
@@ -369,6 +371,69 @@ export default function ProductsPage() {
               <button onClick={confirmDelete}
                 className="flex-1 px-4 py-2.5 rounded-xl bg-destructive hover:bg-destructive/90 text-destructive-foreground font-semibold transition-all cursor-pointer text-sm">
                 {language === 'fr' ? 'Supprimer' : 'Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Delete Constraint Error Modal ── */}
+      {showDeleteErrorModal && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/40 z-50 flex items-center justify-center p-4 animate-fadeIn">
+          <div className="bg-card rounded-2xl shadow-2xl max-w-md w-full border border-red-200 dark:border-red-900/50 overflow-hidden">
+            <div className="flex items-center justify-between px-7 py-5 border-b border-border bg-red-50/50 dark:bg-red-950/20">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 bg-red-100 dark:bg-red-900/30 rounded-xl">
+                  <AlertTriangle size={20} className="text-red-600 dark:text-red-400" />
+                </div>
+                <div>
+                  <h2 className="text-base font-bold text-foreground">
+                    {language === 'fr' ? 'Suppression impossible' : 'Cannot delete product'}
+                  </h2>
+                  <p className="text-xs text-red-600 dark:text-red-400 font-semibold mt-0.5">
+                    {language === 'fr' ? 'Bons de livraison liés' : 'Linked delivery notes'}
+                  </p>
+                </div>
+              </div>
+              <button onClick={() => { setShowDeleteErrorModal(false); setDeleteProductId(null); }} className="p-2 hover:bg-secondary rounded-xl transition-colors cursor-pointer">
+                <X size={18} className="text-muted-foreground" />
+              </button>
+            </div>
+
+            <div className="px-7 py-6 space-y-4">
+              <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-200/60 dark:border-red-800/40 text-xs leading-relaxed text-red-700 dark:text-red-300">
+                {language === 'fr' ? (
+                  <>
+                    <p className="font-semibold text-sm mb-1">Attention !</p>
+                    <p>Ce code produit ne peut pas être supprimé car il est déjà utilisé dans un ou plusieurs <strong>bons de livraison</strong>.</p>
+                    <p className="mt-2 text-red-600/80 dark:text-red-400/80">Pour pouvoir le supprimer, vous devez d'abord supprimer ou modifier les bons de livraison associés.</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="font-semibold text-sm mb-1">Warning!</p>
+                    <p>This product code cannot be deleted because it is currently linked to one or more <strong>delivery notes</strong>.</p>
+                    <p className="mt-2 text-red-600/80 dark:text-red-400/80">To delete this product, you must first remove or update the associated delivery notes.</p>
+                  </>
+                )}
+              </div>
+
+              {deleteProductId != null && (() => {
+                const p = products.find(p => p.id === deleteProductId);
+                return p ? (
+                  <div className="px-4 py-3 rounded-xl bg-secondary/50 border border-border">
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">{language === 'fr' ? 'Produit concerné' : 'Affected product'}</p>
+                    <p className="text-sm font-bold text-foreground mt-0.5">{p.code} — <span className="font-normal text-muted-foreground">{p.description || '—'}</span></p>
+                  </div>
+                ) : null;
+              })()}
+            </div>
+
+            <div className="flex px-7 py-4 border-t border-border bg-secondary/20">
+              <button
+                onClick={() => { setShowDeleteErrorModal(false); setDeleteProductId(null); }}
+                className="w-full px-4 py-2.5 rounded-xl bg-primary hover:bg-orange-600 text-white font-bold transition-all cursor-pointer text-sm shadow-sm"
+              >
+                {language === 'fr' ? 'Compris' : 'Understood'}
               </button>
             </div>
           </div>
