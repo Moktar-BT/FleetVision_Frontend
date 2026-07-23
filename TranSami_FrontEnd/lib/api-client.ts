@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://fleetvsionbackend-production.up.railway.app/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
 function getToken(): string | null {
   if (typeof window === 'undefined') return null;

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useApp } from '@/lib/context';
@@ -266,7 +266,7 @@ export default function ProductsPage() {
                         {product.code}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 text-xs text-foreground max-w-[180px] truncate">
+                    <td className="px-5 py-3.5 text-xs text-foreground max-w-[180px] truncate" title={product.description || ''}>
                       {product.description || <span className="text-muted-foreground">—</span>}
                     </td>
                     <td className="px-5 py-3.5 text-xs font-bold text-foreground">
