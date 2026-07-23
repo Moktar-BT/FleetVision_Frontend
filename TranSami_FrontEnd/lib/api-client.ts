@@ -18,9 +18,12 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   let res: Response;
   try {
     res = await fetch(`${API_URL}${endpoint}`, { ...options, headers });
-  } catch (error) {
+  } catch (error: any) {
     if (typeof window !== 'undefined') {
       console.error('Fetch error:', error);
+    }
+    if (error instanceof TypeError || error?.message === 'Failed to fetch') {
+      throw new Error('Impossible de contacter le serveur. Veuillez vérifier votre connexion internet ou réessayer plus tard.');
     }
     throw error;
   }

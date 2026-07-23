@@ -65,7 +65,13 @@ export default function LoginPage() {
 
       router.push('/dashboard');
     } catch (err: any) {
-      setError(err.message);
+      if (err?.message === 'Failed to fetch' || err?.name === 'TypeError') {
+        setError(language === 'fr' 
+          ? 'Impossible de se connecter au serveur. Veuillez vérifier votre connexion internet.' 
+          : 'Unable to connect to the server. Please check your internet connection.');
+      } else {
+        setError(err.message || 'Erreur de connexion');
+      }
     } finally {
       setLoading(false);
     }

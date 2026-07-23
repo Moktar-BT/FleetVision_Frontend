@@ -2083,7 +2083,7 @@ export default function TrucksPage() {
           </div>
         </div>
 
-        {loading && <div className="flex items-center justify-center py-24"><Loader2 size={36} className="animate-spin text-primary" /></div>}
+        {loading && <Loading fullScreen={false} text={language === 'fr' ? 'Chargement de la flotte de camions...' : 'Loading truck fleet...'} />}
 
         {error && !loading && (
           <div className="flex items-center gap-3 px-5 py-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400">

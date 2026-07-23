@@ -20,6 +20,7 @@ import {
   ChargeTemplateResponse,
 } from '@/lib/api-client';
 import { ReinitVidangeModal } from '../repairs/Components/RappelsVidangeSection'
+import Loading from '@/components/Loading';
 
 // ─── Couleur dédiée aux Charges ──────────────────────────────────────────────
 const CHARGE_HEX = '#A0522D';
@@ -537,6 +538,10 @@ export default function DashboardPage() {
       prefix: netProfit < 0 ? '−' : '+',
     },
   ];
+
+  if (loading) {
+    return <Loading fullScreen text={language === 'fr' ? 'Chargement du tableau de bord...' : 'Loading dashboard...'} />;
+  }
 
   return (
     <div className="p-6 space-y-6">
